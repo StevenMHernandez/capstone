@@ -20,7 +20,7 @@ node src/index.js
 
 ## Resources
 
-[Project Wiki](/wiki) contains information on setting things up for the project.
+[Project Wiki](https://github.com/StevenMHernandez/capstone/wiki) contains information on setting things up for the project.
 (For example setting up NPM, AWS, etc)
 If we as a group need to explain anything to one another how to do something,
 we should create a page in the wiki so that the whole group can learn.
