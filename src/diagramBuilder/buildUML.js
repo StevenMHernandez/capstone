@@ -10,5 +10,5 @@
  * @param data
  * @returns {*}
  */
-module.exports = function (data) {
+module.exports = function (filename, data) {
 };

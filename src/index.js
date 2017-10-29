@@ -1,13 +1,9 @@
-var loadFromAWS = require('./loadFromAWS');
-var mapData = require('./mapData');
-var buildUML = require('./buildUML');
+var diagramBuilder = require('./diagramBuilder/index');
 
-console.log("Loading data from AWS");
-
-loadFromAWS('us-west-2', 'ASV_CHATBOT', function (data) {
-    var mappedData = mapData(data);
-
-    buildUML(mappedData);
-
-    console.log("Complete");
-});
+/*
+ * For now, we will only build our diagram here.
+ *
+ * In the future, this file will be used for more things including:
+ * sending data to slack, receiving data from slack, etc.
+ */
+diagramBuilder.build('us-west-2', 'ASV_CHATBOT');
