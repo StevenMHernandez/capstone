@@ -4,6 +4,20 @@ Sponsor: Capital One
 
 Goal: Provide operational insight to AWS service architecture.
 
+## Project Setup
+
+```
+git clone https://github.com/StevenMHernandez/capstone.git
+cd capstone
+npm install
+```
+
+## Run Project
+
+```
+node src/index.js
+```
+
 ## Resources
 
 [Project Wiki](/wiki) contains information on setting things up for the project.
