@@ -1,8 +1,6 @@
 /**
  * Controls logic for building the diagram.
  *
- *
- *
  * @param pumlFilename
  * @param Filename
  */

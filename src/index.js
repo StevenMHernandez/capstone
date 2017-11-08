@@ -6,4 +6,4 @@ var diagramBuilder = require('./diagramBuilder/index');
  * In the future, this file will be used for more things including:
  * sending data to slack, receiving data from slack, etc.
  */
-diagramBuilder.build('us-west-2', 'ASV_CHATBOT');
+diagramBuilder.build('us-east-1', 'PROD_SERVER');
