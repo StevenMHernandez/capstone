@@ -31,8 +31,9 @@ we should create a page in the wiki so that the whole group can learn.
 
 ## Preview an in-browser graph
 
-As a quick experiment, I am trying out WebCola as an interactive graph/uml visualizer.
-This might offer us some additional points of interest for our project.
+As an experiment, I am trying out [WebCola](http://marvl.infotech.monash.edu/webcola/index.html) as an interactive graph/uml visualizer.
+WebCola provides some helpers to build SVG graphs in the browser.
+This might offer us some additional points of interest for our project such as clicking an ec2 instance to view stats/more information.
 
 To run this in-browser graph, we first need to install an http-server with `npm install -g http-server`.
 

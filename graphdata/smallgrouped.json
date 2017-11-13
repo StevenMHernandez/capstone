@@ -19,7 +19,7 @@
   ],
   "groups":[
     {"name": "<<AWS>>", "leaves":[0], "groups":[1]},
-    {"leaves":[1,2]},
-    {"leaves":[3,4]}
+    {"name": "Public Facing", "leaves":[1,2]},
+    {"name": "<<data center>>", "leaves":[3,4]}
   ]
 }
