@@ -15,51 +15,45 @@ module.exports = function (region, tag, callback) {
     var resourcegroupstaggingapi = new AWS.ResourceGroupsTaggingAPI();
     var ec2 = new AWS.EC2();
 
-    var params = {
-        TagFilters: [
-            {
-                Key: "ASV",
-                Values: [tag]
-            }
-        ]
-    };
+    var params = {};
+    var ec2 = new AWS.EC2();
+    var elb = new AWS.ELB();
+    var rds = new AWS.RDS();
 
+    var resourcegroupstaggingapi = new AWS.ResourceGroupsTaggingAPI();
     resourcegroupstaggingapi.getResources(params, function (err, data) {
-        if (err) {
-            console.error(err, err.stack);
-        } else {
-            // TODO: handle pagination
-
+        ec2.describeTags(params,function (err,data){
+            console.log("Describe EC2 Tags:");
             console.log(data);
+        });
+        ec2.describeSubnets(params, function (err2, data2) {
+            console.log("Describe EC2 Subnets:");
+            console.log(data2);
+        })
+        ec2.describeSecurityGroups(params, function (err3, data3) {
+            console.log("EC2 Security Groups:");
+            console.log(data3
+                /*.SecurityGroups[0].IpPermissions*/ //This is to see in detail the permissions
+                );
+        })
+        elb.describeTags(params, function (err4, data4) {
+            console.log("elb tags");
+            console.log(data4);
+        })
 
-            for (var i = 0; i < data.ResourceTagMappingList.length; i++) {
-                var resource = data.ResourceTagMappingList[i];
+        rds.describeDBSecurityGroups(params, function (err5, data5) {
+            console.log("Security Groups for rds DBS:");
+            console.log(data5);
+        })
 
-                console.log(resource, resource.Tags);
-                console.log();
-                console.log();
-
-                // TODO: Build a parser for ResourceARNs
-                var type = resource.ResourceARN.split("/")[0].split(":")[5];
-                var instanceId = resource.ResourceARN.split("/")[1];
-
-                if (type == 'instance') {
-                    var ec2Params = {
-                        Attribute: 'groupSet',
-                        InstanceId: instanceId
-                    };
-
-                    ec2.describeInstanceAttribute(ec2Params, function (err, data) {
-                        if (err) {
-                            console.error(err, err.stack)
-                        } else {
-                            console.log(err, data);
-                        }
-                    });
-                }
-            }
-
+        if (err) {
+        }
+        else {
             callback(data);
         }
     });
+
 };
+
+
+
