@@ -29,6 +29,14 @@ Sometimes, we might add a new library through npm. To download this new library,
 If we as a group need to explain anything to one another how to do something,
 we should create a page in the wiki so that the whole group can learn.
 
+## Hosting Chatbot
+
+Chatbot logic is "hosted" using AWS Lambda. Deployment and configuration is handled by [the serverless framework](https://github.com/serverless/serverless)
+
+With sufficient credentials, chatbot can be deployed with `serverless-deploy --aws-profile your-profile-name-here`
+
+More information to come.
+
 ## Preview an in-browser graph
 
 As an experiment, I am trying out [WebCola](http://marvl.infotech.monash.edu/webcola/index.html) as an interactive graph/uml visualizer.
