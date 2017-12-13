@@ -1,10 +1,11 @@
 /**
  * Controls logic for building the diagram.
  *
- * @param pumlFilename
- * @param Filename
+ * @param region
+ * @param tag
+ * @param callback
  */
-module.exports.build = function (region, tag) {
+module.exports.build = function (region, tag, callback) {
     var loadFromAWS = require('./loadFromAWS');
     var mapData = require('./mapData');
     var buildUML = require('./buildUML');
@@ -13,6 +14,7 @@ module.exports.build = function (region, tag) {
     console.log("Loading data from AWS");
 
     loadFromAWS(region, tag, function (data) {
+        callback(data);
         var mappedData = mapData(data);
 
         buildUML(__dirname + '../storage/diagram.puml', mappedData);

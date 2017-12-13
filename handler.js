@@ -1,16 +1,14 @@
 'use strict';
 
 module.exports.buildDiagram = (event, context, callback) => {
-  const response = {
-    statusCode: 200,
-    body: JSON.stringify({
-      message: 'Go Serverless v1.0! Your function executed successfully! This should connect to our preexisting node.js scripts.',
-      input: event,
-    }),
-  };
+  var diagramBuilder = require('./src/diagramBuilder/index');
 
-  callback(null, response);
+  diagramBuilder.build('us-east-1', 'PROD_SERVER', function(result) {
+    const response = {
+      statusCode: 200,
+      body: JSON.stringify(result),
+    };
 
-  // Use this code if you don't use the http event with the LAMBDA-PROXY integration
-  // callback(null, { message: 'Go Serverless v1.0! Your function executed successfully!', event });
+    callback(null, response);
+  });
 };
