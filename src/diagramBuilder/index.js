@@ -5,7 +5,7 @@
  * @param tag
  * @param callback
  */
-module.exports.build = function (region, tag, callback) {
+module.exports.build = function (region, tag, requestedResource, callback) {
     var loadFromAWS = require('./loadFromAWS');
     var mapData = require('./mapData');
     var buildUML = require('./buildUML');
@@ -13,7 +13,7 @@ module.exports.build = function (region, tag, callback) {
 
     console.log("Loading data from AWS");
 
-    loadFromAWS(region, tag, function (data) {
+    loadFromAWS(region, tag, requestedResource, function (data) {
         callback(data);
         var mappedData = mapData(data);
 
