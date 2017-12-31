@@ -5,7 +5,7 @@
  * @param tag
  * @param callback
  */
-module.exports.build = function (region, tag, requestedResource, callback) {
+module.exports.build = function (region, tag, callback) {
     var loadFromAWS = require('./loadFromAWS');
     var mapData = require('./mapData');
     var buildUML = require('./buildUML');
@@ -13,15 +13,18 @@ module.exports.build = function (region, tag, requestedResource, callback) {
 
     console.log("Loading data from AWS");
 
-    loadFromAWS(region, tag, requestedResource, function (data) {
-        callback(data);
-        var mappedData = mapData(data);
+    Promise.all([loadFromAWS(region, tag, "ELB"), loadFromAWS(region, tag, "EC2"), loadFromAWS(region, tag, "RDS")])
+        .then(function(allData) {
+            callback(allData);
 
-        buildUML(__dirname + '../storage/diagram.puml', mappedData);
+            var mappedData = mapData(allData);
 
-        pumlToPDF(__dirname + '../storage/diagram.puml', __dirname + '../storage/diagram.pdf');
+            buildUML(__dirname + '../storage/diagram.puml', mappedData);
 
-        console.log("Complete");
+            pumlToPDF(__dirname + '../storage/diagram.puml', __dirname + '../storage/diagram.pdf');
+
+        }).catch(function (err) {
+        console.log(err);
     });
-
+    ;
 };

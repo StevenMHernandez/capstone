@@ -12,6 +12,7 @@
   "dependencies": {
     "aws-sdk": "^2.131.0",
     "express": "^4.16.1",
+    "promise": "^8.0.1",
     "slackbots": "^1.1.0",
     "webcola": "^3.3.6"
   }
