@@ -1,5 +1,7 @@
 # VCU Senior Capstone
 
+[![CircleCI](https://circleci.com/gh/StevenMHernandez/capstone.svg?style=svg)](https://circleci.com/gh/StevenMHernandez/capstone)
+
 Sponsor: Capital One
 
 Goal: Provide operational insight to AWS service architecture.

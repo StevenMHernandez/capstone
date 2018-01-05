@@ -11,7 +11,5 @@
  * @returns {*}
  */
 module.exports = function (data) {
-    console.log("MapData", data);
     return data
-
 };

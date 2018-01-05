@@ -14,7 +14,7 @@ module.exports.build = function (region, tag, callback) {
     console.log("Loading data from AWS");
 
     Promise.all([loadFromAWS(region, tag, "ELB"), loadFromAWS(region, tag, "EC2"), loadFromAWS(region, tag, "RDS")])
-        .then(function(allData) {
+        .then(function (allData) {
             callback(allData);
 
             var mappedData = mapData(allData);
@@ -23,8 +23,8 @@ module.exports.build = function (region, tag, callback) {
 
             pumlToPDF(__dirname + '../storage/diagram.puml', __dirname + '../storage/diagram.pdf');
 
-        }).catch(function (err) {
-        console.log(err);
-    });
-    ;
+        })
+        .catch(function (err) {
+            console.log(err);
+        });
 };
