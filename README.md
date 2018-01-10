@@ -20,6 +20,12 @@ npm install
 node src/index.js
 ```
 
+## Run Tests
+
+```
+npm test
+```
+
 ## Update Dependencies
 
 Sometimes, we might add a new library through npm. To download this new library, run `npm install` once again.
