@@ -10,29 +10,15 @@
 ' There can be many subnets, which contain many servers and many databases
 
 AWSCLOUD(aws) {
-    frame "subnet-abc" {
-        INSTANCE(api1, "Windows2016")
-
-        INSTANCE(api2, "AmazonLinux")
-
-        INSTANCE(api3, "RedHatService")
-
-        MYSQLDBINSTANCE(db1, "MySQL1")
-
-        MYSQLDBINSTANCE(db2, "MySQL2")
+{{#subnets}}
+    frame "{{subnet_name}}" {
+    {{#ec2}}
+        INSTANCE({{id}}, "{{name}}")
+    {{/ec2}}
+    {{#rds}}
+        MYSQLDBINSTANCE({{id}},"{{name}}")
+    {{/rds}}
     }
-
-    frame "subnet-abc2" {
-        MYSQLDBINSTANCE(db3, "MySQL3")
-
-        MYSQLDBINSTANCE(db4, "MySQL4")
-    }
-
-    frame "subnet-abc3" {
-        INSTANCE(api5, "RedHatService")
-
-        MYSQLDBINSTANCE(db5, "MySQL5")
-    }
-}
+{{/subnets}}
 
 @enduml
