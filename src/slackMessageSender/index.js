@@ -8,4 +8,4 @@ var sendImageMessage = require('./sendImageMessage');
 var username = ". . .";
 
 sendMessage(username, "Hello world");
-sendImageMessage(username, __dirname + "/../../resources/mustache/AWS_CLOUD.png");
+sendImageMessage(username, "https://s3.amazonaws.com/zeebo/YmY1NjYxNA.png");
