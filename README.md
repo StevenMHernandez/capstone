@@ -17,7 +17,12 @@ npm install
 ## Run Project
 
 ```
+# run/manually test diagram builder code
 node src/index.js
+
+# or, run/manually test the slack Message sender code
+# notice, you must change the CHATBOT_TOKEN to your specific chatbot's token.
+CHATBOT_TOKEN=XXXX node src/slackMessageSender/index.js
 ```
 
 ## Run Tests
