@@ -7,5 +7,5 @@ var sendImageMessage = require('./sendImageMessage');
 // Locally, you can change this
 var username = ". . .";
 
-sendMessage(username, "Hello world");
-sendImageMessage(username, __dirname + "/../../resources/mustache/AWS_CLOUD.png");
+// sendMessage(username, "Hello world");
+sendImageMessage(username, "https://s3.amazonaws.com/zeebo/test.png");
