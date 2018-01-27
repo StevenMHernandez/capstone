@@ -5,7 +5,7 @@ var sendMessage = require('./sendMessage');
 var sendImageMessage = require('./sendImageMessage');
 
 // Locally, you can change this
-var channelID = ". . .";
+var username = ". . .";
 
-sendMessage(channelID, "Hello world");
-sendImageMessage(channelID, __dirname + "/../../resources/mustache/AWS_CLOUD.png");
+sendMessage(username, "Hello world");
+sendImageMessage(username, __dirname + "/../../resources/mustache/AWS_CLOUD.png");

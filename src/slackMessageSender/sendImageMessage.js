@@ -1,10 +1,10 @@
 /**
  * Send the image at `imagePath` to channel id `channelId`
  *
- * @param channelId
+ * @param username
  * @param imagePath
  */
-module.exports = function (channelId, imagePath) {
+module.exports = function (username, imagePath) {
     // DO NOT STORE THE CHATBOT TOKEN IN GITHUB!
     // This is passed in when you run 
     // `CHATBOT_TOKEN=XXXX node src/slackMessageSender/index.js`

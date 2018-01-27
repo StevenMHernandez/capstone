@@ -1,10 +1,10 @@
 /**
  * Send message to the channel provided.
  *
- * @param channelId
+ * @param username
  * @param message
  */
-module.exports = function (channelId, message) {
+module.exports = function (username, message) {
     // DO NOT STORE THE CHATBOT TOKEN IN GITHUB!
     // This is passed in when you run
     // `CHATBOT_TOKEN=XXXX node src/slackMessageSender/index.js`
