@@ -35,6 +35,10 @@ provider:
         - elasticbeanstalk:Retrieve*
         - elasticbeanstalk:Validate*
       Resource: "*"
+    - Effect: "Allow"
+      Action:
+        - s3:PutObject
+      Resource: "arn:aws:s3:::zeebo"
 
 # you can overwrite defaults here
 #  stage: dev
@@ -56,9 +60,10 @@ provider:
 #            - "Ref" : "ServerlessDeploymentBucket"
 #            - "/*"
 
-# you can define service wide environment variables here
-#  environment:
-#    variable1: value1
+  environment:
+    CHATBOT_TOKEN: ${file(./.env.yml):CHATBOT_TOKEN}
+    S3_ACCESS_KEY: ${file(./.env.yml):S3_ACCESS_KEY}
+    S3_SECRET_KEY: ${file(./.env.yml):S3_SECRET_KEY}
 
 # you can add packaging information here
 #package:
