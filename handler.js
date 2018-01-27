@@ -5,6 +5,7 @@ const querystring = require('querystring');
 module.exports.buildDiagram = (event, context, callback) => {
     var diagramBuilder = require('./src/diagramBuilder/index');
     var storeImage = require('./src/storeImage/store');
+    var slackSendImageMessage = require('./src/slackMessageSender/sendImageMessage');
 
     var queryData = querystring.parse(event.body);
 
@@ -22,5 +23,6 @@ module.exports.buildDiagram = (event, context, callback) => {
 
     storeImage(__dirname + "/resources/mustache/AWS_CLOUD.png")
         .then(function(uri) {
+            slackSendImageMessage(queryData.user_name, uri);
         });
 };
