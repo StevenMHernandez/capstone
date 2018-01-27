@@ -1,6 +1,4 @@
 var assert = require('chai').assert;
-var chai = require('chai');
-var expect = chai.expect;
 var loadFromAWS = require('../src/diagramBuilder/loadFromAWS');
 
 var region = 'us-east-1';

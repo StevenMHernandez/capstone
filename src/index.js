@@ -8,5 +8,5 @@ var diagramBuilder = require('./diagramBuilder/index');
  */
 
 diagramBuilder.build('us-east-1', 'PROD_SERVER', function(results) {
-    //console.log(results);
+    console.log(results);
 });
