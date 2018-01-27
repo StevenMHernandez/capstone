@@ -1,28 +1,36 @@
 'use strict';
 
 const querystring = require('querystring');
+const AWS = require('aws-sdk');
+const sns = new AWS.SNS();
 
 module.exports.buildDiagram = (event, context, callback) => {
-    var diagramBuilder = require('./src/diagramBuilder/index');
-    var storeImage = require('./src/storeImage/store');
-    var slackSendImageMessage = require('./src/slackMessageSender/sendImageMessage');
+    let queryData = querystring.parse(event.body);
 
-    var queryData = querystring.parse(event.body);
-
-    var response = {
-        statusCode: 200
+    let response = {
+        statusCode: 200,
+        body: "I'll start building a diagram for you.",
     };
 
-    response.body = "I'll start building a diagram for you. " + JSON.stringify(queryData);
+    let arnParts = context.invokedFunctionArn.split(":");
 
-    callback(null, response);
-    
-    // diagramBuilder.build('us-east-1', 'PROD_SERVER', requestedResource, function (result) {
-    //     result = result ? result : {};
-    // });
+    let endpointArn = "arn:aws:sns:" + arnParts[3] + ":" + arnParts[4] + ":zeebo-queue-topic";
 
-    storeImage(__dirname + "/resources/mustache/AWS_CLOUD.png")
-        .then(function(uri) {
-            slackSendImageMessage(queryData.user_name, uri);
-        });
+    let snsPayload = {
+        default: queryData.user_name
+    };
+
+    console.log('sending push');
+    sns.publish({
+        Message: JSON.stringify(snsPayload),
+        MessageStructure: 'json',
+        TopicArn: endpointArn
+    }, function (err, data) {
+        if (err) {
+            console.log(err.stack);
+            return;
+        }
+
+        callback(null, response);
+    });
 };

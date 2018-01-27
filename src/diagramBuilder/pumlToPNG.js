@@ -17,6 +17,7 @@ module.exports = function (pumlFilename) {
         });
 
         plantuml.on('close', (code) => {
+            console.log("plantuml created");
             resolve();
         });
     });
