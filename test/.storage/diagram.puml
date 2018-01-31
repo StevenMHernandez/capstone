@@ -1,0 +1,35 @@
+@startuml
+!define AWSPUML https://raw.githubusercontent.com/milo-minderbinder/AWS-PlantUML/release/17-10-18/dist
+!includeurl AWSPUML/common.puml
+!includeurl AWSPUML/ApplicationServices/AmazonAPIGateway/AmazonAPIGateway.puml
+!includeurl AWSPUML/General/AWScloud/AWScloud.puml
+!includeurl AWSPUML/Compute/AmazonEC2/instance/instance.puml
+!includeurl AWSPUML/Database/AmazonRDS/MySQLDBinstance/MySQLDBinstance.puml
+
+AWSCLOUD(aws) {
+    frame "subnet-abc" {
+        INSTANCE(api1, "Windows2016")
+
+        INSTANCE(api2, "AmazonLinux")
+
+        INSTANCE(api3, "RedHatService")
+
+        MYSQLDBINSTANCE(db1, "MySQL1")
+
+        MYSQLDBINSTANCE(db2, "MySQL2")
+    }
+
+    frame "subnet-abc2" {
+        MYSQLDBINSTANCE(db3, "MySQL3")
+
+        MYSQLDBINSTANCE(db4, "MySQL4")
+    }
+
+    frame "subnet-abc3" {
+        INSTANCE(api5, "RedHatService")
+
+        MYSQLDBINSTANCE(db5, "MySQL5")
+    }
+}
+
+@enduml

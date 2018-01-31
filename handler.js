@@ -1,23 +1,34 @@
 'use strict';
 
 const querystring = require('querystring');
+const AWS = require('aws-sdk');
+const sns = new AWS.SNS();
 
 module.exports.buildDiagram = (event, context, callback) => {
-    var diagramBuilder = require('./src/diagramBuilder/index');
+    let queryData = querystring.parse(event.body);
 
-    var queryData = querystring.parse(event.body);
-    var requestedResource = queryData.text.split(" ")[1];
+    let response = {
+        statusCode: 200,
+        body: "I'll start building a diagram for you.",
+    };
 
-    diagramBuilder.build('us-east-1', 'PROD_SERVER', requestedResource, function (result) {
-        result = result ? result : {};
+    let arnParts = context.invokedFunctionArn.split(":");
 
-        var response = {
-            statusCode: 200
-        };
-        if (requestedResource) {
-            response.body = "Here is some data about " + requestedResource + ":\n\n" + JSON.stringify(result)
-        } else {
-            response.body = "Here is some data about your resources:\n\n" + JSON.stringify(result)
+    let endpointArn = "arn:aws:sns:" + arnParts[3] + ":" + arnParts[4] + ":zeebo-queue-topic";
+
+    let snsPayload = {
+        default: queryData.user_name
+    };
+
+    console.log('sending push');
+    sns.publish({
+        Message: JSON.stringify(snsPayload),
+        MessageStructure: 'json',
+        TopicArn: endpointArn
+    }, function (err, data) {
+        if (err) {
+            console.log(err.stack);
+            return;
         }
 
         callback(null, response);

@@ -1,5 +1,7 @@
+let SlackBot = require('slackbots');
+
 /**
- * Send message to the channel provided.
+ * Send message to the username provided.
  *
  * @param username
  * @param message
@@ -8,8 +10,14 @@ module.exports = function (username, message) {
     // DO NOT STORE THE CHATBOT TOKEN IN GITHUB!
     // This is passed in when you run
     // `CHATBOT_TOKEN=XXXX node src/slackMessageSender/index.js`
-    var chatbotToken = process.env.CHATBOT_TOKEN;
+    let chatbotToken = process.env.CHATBOT_TOKEN;
 
-    // TODO: send `message` to the channelId
-    console.error("error: sendMessage() not implemented")
+    let bot = new SlackBot({
+        token: chatbotToken,
+        name: 'Zeebo'
+    });
+
+    bot.postMessageToUser(username, message).then(function (data) {
+        process.exit();
+    });
 };

@@ -20,6 +20,7 @@ service: zeebo-diagram # NOTE: update this with your service name
 provider:
   name: aws
   runtime: nodejs6.10
+  timeout: 10
   iamRoleStatements:
     - Effect: Allow
       Action:
@@ -35,6 +36,32 @@ provider:
         - elasticbeanstalk:Retrieve*
         - elasticbeanstalk:Validate*
       Resource: "*"
+    - Effect: "Allow"
+      Action:
+        - s3:PutObject
+      Resource: "arn:aws:s3:::zeebo"
+    - Effect: 'Allow'
+      Action:
+        - "sns:Publish"
+      Resource:
+        - ${self:custom.ZeeboQueueTopic}
+
+  environment:
+    CHATBOT_TOKEN: ${file(./.env.yml):CHATBOT_TOKEN}
+    S3_ACCESS_KEY: ${file(./.env.yml):S3_ACCESS_KEY}
+    S3_SECRET_KEY: ${file(./.env.yml):S3_SECRET_KEY}
+    SNS_ZEEBO_QUEUE_TOPIC: ${self:custom.ZeeboQueueTopic}
+
+custom:
+  ZeeboQueueTopic:
+    Fn::Join:
+      - ":"
+      - - arn
+        - aws
+        - sns
+        - Ref: AWS::Region
+        - Ref: AWS::AccountId
+        - zeebo-queue-topic
 
 # you can overwrite defaults here
 #  stage: dev
@@ -56,10 +83,6 @@ provider:
 #            - "Ref" : "ServerlessDeploymentBucket"
 #            - "/*"
 
-# you can define service wide environment variables here
-#  environment:
-#    variable1: value1
-
 # you can add packaging information here
 #package:
 #  include:
@@ -74,6 +97,12 @@ functions:
     handler: handler.buildDiagram
     events:
       - http: POST /
+  snsConsumer:
+    handler: slackBotResponseHandler.buildDiagram
+    events:
+      - sns: zeebo-queue-topic
+        topicName: zeebo-queue-topic
+        displayName: Topic to handle generating and returning diagram to slack
 
 #    The following are a few example events you can configure
 #    NOTE: Please make sure to change your handler code to work with those events
