@@ -19,9 +19,9 @@ module.exports.build = function (region, tag, callback) {
 
             var mappedData = mapData(allData);
 
-            buildUML(__dirname + '../storage/diagram.puml', mappedData);
+            buildUML(__dirname + '/../../storage/diagram.puml', mappedData);
 
-            pumlToPDF(__dirname + '../storage/diagram.puml', __dirname + '../storage/diagram.pdf');
+            pumlToPDF(__dirname + '/../storage/diagram.puml', __dirname + '../storage/diagram.pdf');
 
         })
         .catch(function (err) {

@@ -11,16 +11,19 @@
  * @param data
  * @returns {*}
  */
-module.exports = function (filename, data) {
-    // TODO: we need to find a way to load this file as a string.
-    // load_file is not the correct function.
-    let mustacheString = load_file(__dirname + '../../../resources/mustache/AWS_CLOUD.mustache');
+var fs = require('fs');
+var Mustache = require('mustache');
+let mustacheString = '';
 
-    // TODO: We need to install https://github.com/janl/mustache.js/
-    // nodejs usage see: https://stackoverflow.com/a/8106610
+
+    module.exports = function (filename, data) {
+      var file = fs.readFileSync('../resources/mustache/AWS_CLOUD.mustache');
+      mustacheString = file.toString();
+    //console.log(mustacheString);
+      console.log(data[0]);
     let renderpumlString = Mustache.render(mustacheString, data);
 
     // TODO: We then need to save the string to a file at the file location specified in filename
     // file_save is not the correct function.
-    file_save(filename, renderpumlString);
+    fs.writeFileSync(filename, renderpumlString);
 };
