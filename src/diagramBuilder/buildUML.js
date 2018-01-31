@@ -19,11 +19,6 @@ let mustacheString = '';
     module.exports = function (filename, data) {
       var file = fs.readFileSync('../resources/mustache/AWS_CLOUD.mustache');
       mustacheString = file.toString();
-    //console.log(mustacheString);
-      console.log(data[0]);
-    let renderpumlString = Mustache.render(mustacheString, data);
-
-    // TODO: We then need to save the string to a file at the file location specified in filename
-    // file_save is not the correct function.
-    fs.writeFileSync(filename, renderpumlString);
+      let renderpumlString = Mustache.render(mustacheString, data);
+      fs.writeFileSync(filename, renderpumlString);
 };
