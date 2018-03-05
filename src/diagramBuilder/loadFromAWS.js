@@ -1,5 +1,5 @@
 var AWS = require('aws-sdk');
-
+var loadEC2 = require('./loadEC2');
 /**
  * Load raw data from AWS.
  * This function should simply load the data that we need.
@@ -27,10 +27,9 @@ module.exports = function (region, tag, requestedResource, callback) {
         return new Promise(function (resolve, reject) {
             switch (requestedResource) {
                 case ("EC2"):
-                    ec2.describeTags(params, function (err, data) {
-                        resolve(data);
-                    });
+                    resolve(loadEC2(region,tag,requestedResource));
                     break;
+
                 case("ELB"):
                     elb.describeTags(params, function (err4, data) {
                         resolve(data);
