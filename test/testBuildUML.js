@@ -71,9 +71,9 @@ describe('testBuildUML()', function () {
                 ]
             };
 
-            buildUML("~/.storage/ec2_file.puml", object);
+            buildUML(__dirname + "/.storage/ec2_file.puml", object);
 
-            expect("~/.storage/ec2_file.puml").to.be.a.file();
+            expect(__dirname + "/.storage/ec2_file.puml").to.be.a.file();
 
 
         });
