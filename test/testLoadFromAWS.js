@@ -14,14 +14,6 @@ describe('testLoadFromAWS', function () {
         });
     });
 
-    describe('ELB', function () {
-        it('should return data for Elastic Load Balancers', function () {
-            return loadFromAWS(region, tag, "ELB").then(function (allData) {
-                assert.isObject(allData);
-            });
-        });
-    });
-
     describe('RDS', function () {
         it('should return data for RDS instances', function () {
             return loadFromAWS(region, tag, "RDS").then(function (allData) {
