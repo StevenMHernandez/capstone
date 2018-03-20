@@ -7,13 +7,14 @@
  */
 module.exports.build = function (region, tag, callback) {
     var loadFromAWS = require('./loadFromAWS');
+    var loadEC2 = require('./loadEC2');
     var mapData = require('./mapData');
     var buildUML = require('./buildUML');
     var pumlToPNG = require('./pumlToPNG');
 
     console.log("Loading data from AWS");
 
-    Promise.all([loadFromAWS(region, tag, "ELB"), loadFromAWS(region, tag, "EC2"), loadFromAWS(region, tag, "RDS")])
+    Promise.all([loadFromAWS(region, tag, "ELB"), loadEC2(region, tag, "EC2"), loadFromAWS(region, tag, "RDS")])
         .then(function (allData) {
             var mappedData = mapData(allData);
 

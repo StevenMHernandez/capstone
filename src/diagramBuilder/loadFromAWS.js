@@ -26,11 +26,7 @@ module.exports = function (region, tag, requestedResource, callback) {
 
         return new Promise(function (resolve, reject) {
             switch (requestedResource) {
-                case ("EC2"):
-                    resolve(loadEC2(region,tag,requestedResource));
-                    break;
-
-                case("ELB"):
+                 case("ELB"):
                     elb.describeTags(params, function (err4, data) {
                         resolve(data);
                         for (i = 1; i < data.TagDescriptions.length; i++) {
