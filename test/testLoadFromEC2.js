@@ -13,3 +13,4 @@ describe('testLoadFromAWS', function () {
             });
         });
     });
+}
