@@ -14,7 +14,7 @@ module.exports.build = function (region, tag, callback) {
 
     console.log("Loading data from AWS");
 
-    Promise.all([loadFromAWS(region, tag, "ELB"), loadEC2(region, tag, "EC2"), loadFromAWS(region, tag, "RDS")])
+    Promise.all([loadFromAWS(region, tag, "ELB"), loadEC2(region, tag), loadFromAWS(region, tag, "RDS")])
         .then(function (allData) {
             var mappedData = mapData(allData);
 

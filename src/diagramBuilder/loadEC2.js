@@ -9,14 +9,30 @@ AWS.config.update({region:'us-east-1'});
  * @param tag
  * @param callback
  */
-module.exports = function (region, tag, requestedResource, callback) {
-    var params = {};
-    var ec2 = new AWS.EC2();
-
-            ec2.describeTags(params, function (err, data) {
-                // console.log(data.Tags[0]);
-                console.log(data.Tags[0]);
-                return(err,data);
-
-                });
+var ec2 = new AWS.EC2();
+var params = {};
+function loadEC2(region, tag) {
+    // always initialize all instance properties
+    this.region = region;
+    this.tag = tag;
+    this.requestedResource = "EC2";
+    return new Promise(function (resolve, reject) {
+        ec2.describeTags(params, function (err, data) {
+            resolve(data);
+        });
+    });
 }
+
+// export the class
+module.exports = loadEC2;
+
+// module.exports = function (region, tag, requestedResource) {
+//     var params = {};
+//     var ec2 = new AWS.EC2();
+//
+//             ec2.describeTags(params, function (err, data) {
+//
+//                 resolve(data);
+//
+//                 });
+// }

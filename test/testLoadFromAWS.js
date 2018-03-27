@@ -5,18 +5,10 @@ var region = 'us-east-1';
 var tag = 'PROD_SERVER';
 
 describe('testLoadFromAWS', function () {
-    describe('EC2', function () {
-        it('should return data for EC2 instances', function () {
-            return loadFromAWS(region, tag, "EC2").then(function (allData) {
-                assert.isObject(allData);
-                assert.isAbove(allData.Tags.length, 0);
-            });
-        });
-    });
-
     describe('RDS', function () {
         it('should return data for RDS instances', function () {
             return loadFromAWS(region, tag, "RDS").then(function (allData) {
+                console.log(allData);
                 assert.isAbove(allData.DBSecurityGroups.length, 0);
             });
         });
