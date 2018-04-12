@@ -10,6 +10,7 @@ describe('testLoadFromAWS', function () {
             return loadELB(region, tag).then(function (allData) {
                 assert.isObject(allData);
                 assert.isAbove(allData.Tags.length, 0);
+                done();
             });
         });
     });
