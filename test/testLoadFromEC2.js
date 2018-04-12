@@ -10,7 +10,6 @@ describe('testLoadEC2', function () {
             return loadEC2(region, tag).then(function (allData) {
                 assert.isObject(allData);
                 assert.isAbove(allData.Tags.length, 0);
-                done();
             });
         });
     });
