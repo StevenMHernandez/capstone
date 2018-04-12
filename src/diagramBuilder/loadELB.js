@@ -25,18 +25,7 @@ function loadELB(region, tag) {
             }
         });
     })
-
+}
 // export the class
-}   module.exports = loadELB;
+   module.exports = loadELB;
 
-
-// module.exports = function (region, tag, requestedResource) {
-//     var params = {};
-//     var elb = new AWS.ELB();
-//
-//             rds.describeTags(params, function (err, data) {
-//
-//                 resolve(data);
-//
-//                 });
-// }
