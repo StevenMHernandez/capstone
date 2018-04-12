@@ -18,25 +18,15 @@ function loadRDS(region, tag) {
     this.requestedResource = "RDS";
     return new Promise(function (resolve, reject) {
         rds.describeDBSecurityGroups(params, function (err5, data) {
+            console.log("In RDS");
+            console.log(data);
             resolve(data);
-            for (i = 1; i < data.DBSecurityGroups.length; i++) {
-                ec2SecurityGroups += data.DBSecurityGroups[i].EC2SecurityGroups + " ";
-                dbSecurityGroups += data.DBSecurityGroups[i].DBSecurityGroupName + " ";
-            }
+            // for (i = 1; i < data.DBSecurityGroups.length; i++) {
+            //     ec2SecurityGroups += data.DBSecurityGroups[i].EC2SecurityGroups + " ";
+            //     dbSecurityGroups += data.DBSecurityGroups[i].DBSecurityGroupName + " ";
+            // }
         });
     });
-
+}
 // export the class
     module.exports = loadRDS;
-
-
-// module.exports = function (region, tag, requestedResource) {
-//     var params = {};
-//     var ec2 = new AWS.RDS();
-//
-//             rds.describeTags(params, function (err, data) {
-//
-//                 resolve(data);
-//
-//                 });
-// }

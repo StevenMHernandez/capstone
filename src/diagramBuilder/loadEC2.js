@@ -23,16 +23,4 @@ function loadEC2(region, tag) {
     });
 }
 
-// export the class
 module.exports = loadEC2;
-
-// module.exports = function (region, tag, requestedResource) {
-//     var params = {};
-//     var ec2 = new AWS.EC2();
-//
-//             ec2.describeTags(params, function (err, data) {
-//
-//                 resolve(data);
-//
-//                 });
-// }
