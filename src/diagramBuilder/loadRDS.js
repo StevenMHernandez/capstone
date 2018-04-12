@@ -25,9 +25,9 @@ function loadRDS(region, tag) {
             }
         });
     });
-
+}
 // export the class
-    module.exports = loadRDS;
+ module.exports = loadRDS;
 
 
 // module.exports = function (region, tag, requestedResource) {

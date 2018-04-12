@@ -25,9 +25,9 @@ function loadELB(region, tag) {
             }
         });
     })
-
+}
 // export the class
-}   module.exports = loadELB;
+   module.exports = loadELB;
 
 
 // module.exports = function (region, tag, requestedResource) {
