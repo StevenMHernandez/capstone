@@ -1,6 +1,6 @@
 function listASV() {
     return "Hello";
-    }
+}
 
 
-module.exports = listASV();
+module.exports = listASV;

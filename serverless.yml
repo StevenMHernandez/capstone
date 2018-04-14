@@ -97,6 +97,10 @@ functions:
     handler: handler.buildDiagram
     events:
       - http: POST /
+  listASV:
+    handler: slackBotASVListHandler.listASV
+    events:
+      - http: POST /list-asvs
   snsConsumer:
     handler: slackBotResponseHandler.buildDiagram
     events:
