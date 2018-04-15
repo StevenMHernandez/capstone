@@ -105,6 +105,10 @@ functions:
     handler: slackBotASVListHandler.listASV
     events:
       - http: POST /list-asvs
+  listAssets:
+    handler: listAssetsResponseHandler.listAssets
+    events:
+      - http: POST /list-assets
   snsConsumer:
     handler: slackBotResponseHandler.buildDiagram
     events:
