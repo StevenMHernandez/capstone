@@ -97,6 +97,10 @@ functions:
     handler: handler.buildDiagram
     events:
       - http: POST /
+  listAssets:
+    handler: listAssetsResponseHandler.listAssets
+    events:
+      - http: POST /list-assets
   snsConsumer:
     handler: slackBotResponseHandler.buildDiagram
     events:
