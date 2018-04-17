@@ -9,4 +9,4 @@ function list_assets(asv_name){
     console.log("Here is the list of assets:"+ "\n" + asv_name)
 }
 
-module.export = list_assets();
+module.export = list_assets(); 
