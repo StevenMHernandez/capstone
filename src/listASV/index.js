@@ -26,7 +26,7 @@ function listASV() {
         allASV = allASV.substr(0, allASV.length - 2);
 
         console.log(allASV);
+        return(allASV);
     }));
-
 }
 module.exports = listASV;
