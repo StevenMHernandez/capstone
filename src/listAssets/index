@@ -1,0 +1,12 @@
+/*var asv_name = [
+    "Example asset1",
+    "Example asset 2",
+    "Example asset 3"
+];
+*/
+
+function list_assets(asv_name){
+    console.log("Here is the list of assets:"+ "\n" + asv_name)
+}
+
+module.export = list_assets();
