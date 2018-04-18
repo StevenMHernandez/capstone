@@ -13,20 +13,21 @@ function listASV() {
     var myrdspromise = new Promise(function (resolve, reject) {
     });
 
-    myec2promise.then(ec2.describeTags(params, function (err, data) {
-        ec2Raw = data;
-        // console.log(ec2Raw.Tags);
-        var allASV = "EC2 Servers: ";
-        for (var i = 0; i < ec2Raw.Tags.length; i++) {
-            var ec2var = ec2Raw.Tags[i].Value;
-            if (ec2Raw.Tags[i].Key == "ASV") {
-                allASV += ec2var + ", ";
+    return new Promise(function (resolve, reject) {
+        ec2.describeTags(params, function (err, data) {
+            ec2Raw = data;
+            // console.log(ec2Raw.Tags);
+            var allASV = "EC2 Servers: ";
+            for (var i = 0; i < ec2Raw.Tags.length; i++) {
+                var ec2var = ec2Raw.Tags[i].Value;
+                if (ec2Raw.Tags[i].Key == "ASV") {
+                    allASV += ec2var + ", ";
+                }
             }
-        }
-        allASV = allASV.substr(0, allASV.length - 2);
+            allASV = allASV.substr(0, allASV.length - 2);
 
-        console.log(allASV);
-        return(allASV);
-    }));
+            resolve(allASV);
+        });
+    });
 }
 module.exports = listASV;
