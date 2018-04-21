@@ -8,8 +8,8 @@ describe('testLoadEC2', function () {
     describe('EC2', function () {
         it('should return data for EC2 instances', function () {
             return loadEC2(region, tag).then(function (allData) {
-                assert.isObject(allData);
-                assert.isAbove(allData.Tags.length, 0);
+                assert.isArray(allData);
+                assert.isAbove(allData.length, 0);
             });
         });
     });

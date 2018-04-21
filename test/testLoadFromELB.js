@@ -8,9 +8,8 @@ describe('testLoadELB', function () {
     describe('ELB', function () {
         it('should return data for ELB resources', function () {
             return loadELB(region, tag).then(function (allData) {
-                assert.isObject(allData);
-                assert.isAbove(allData.Tags.length, 0);
-                done();
+                assert.isArray(allData);
+                assert.isAbove(allData.length, 0);
             });
         });
     });

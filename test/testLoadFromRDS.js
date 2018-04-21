@@ -8,8 +8,8 @@ describe('testLoadRDS', function () {
     describe('RDS', function () {
         it('should return data for RDS resources', function () {
             return loadRDS(region, tag).then(function (allData) {
-                assert.isObject(allData);
-                assert.isAbove(allData.Tags.length, 0);
+                assert.isArray(allData);
+                assert.isAbove(allData.length, 0);
             });
         });
     });
