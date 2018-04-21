@@ -1,5 +1,7 @@
 var AWS = require('aws-sdk');
 var loadEC2 = require('./loadEC2');
+var loadRDS = require('./loadRDS'); //added in
+var loadELB = require('./loadELB'); //added in
 /**
  * Load raw data from AWS.
  * This function should simply load the data that we need.

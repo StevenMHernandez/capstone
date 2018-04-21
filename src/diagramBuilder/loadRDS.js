@@ -9,18 +9,22 @@ AWS.config.update({region:'us-east-1'});
  * @param tag
  * @param callback
  */
-var ec2 = new AWS.EC2();
+var rds = new AWS.RDS();
 var params = {};
-function loadEC2(region, tag) {
+function loadRDS(region, tag) {
     // always initialize all instance properties
     this.region = region;
     this.tag = tag;
-    this.requestedResource = "EC2";
+    this.requestedResource = "RDS";
     return new Promise(function (resolve, reject) {
-        ec2.describeTags(params, function (err, data) {
+        rds.describeDBSecurityGroups(params, function (err5, data) {
             resolve(data);
+            // for (i = 1; i < data.DBSecurityGroups.length; i++) {
+            //     ec2SecurityGroups += data.DBSecurityGroups[i].EC2SecurityGroups + " ";
+            //     dbSecurityGroups += data.DBSecurityGroups[i].DBSecurityGroupName + " ";
+            // }
         });
     });
 }
-
-module.exports = loadEC2;
+// export the class
+    module.exports = loadRDS;

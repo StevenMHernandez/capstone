@@ -9,18 +9,23 @@ AWS.config.update({region:'us-east-1'});
  * @param tag
  * @param callback
  */
-var ec2 = new AWS.EC2();
+var elb = new AWS.ELB();
+var elbTags = "";
 var params = {};
-function loadEC2(region, tag) {
+function loadELB(region, tag) {
     // always initialize all instance properties
     this.region = region;
     this.tag = tag;
-    this.requestedResource = "EC2";
+    this.requestedResource = "ELB";
     return new Promise(function (resolve, reject) {
-        ec2.describeTags(params, function (err, data) {
+        elb.describeTags(params, function (err4, data) {
             resolve(data);
+            for (i = 1; i < data.TagDescriptions.length; i++) {
+                elbTags += data.TagDescriptions[i].LoadBalancerName + " ";
+            }
         });
-    });
+    })
 }
+// export the class
+   module.exports = loadELB;
 
-module.exports = loadEC2;
