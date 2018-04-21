@@ -20,7 +20,7 @@ module.exports.build = function (region, tag, callback) {
         .then(function (allData) {
             var mappedData = mapData(allData);
 
-             buildUML( __dirname + '/../../storage/diagram.puml', mappedData);
+             buildUML('/tmp/diagram.puml', mappedData);
 
             return pumlToPNG('/tmp/diagram.puml');
         })
