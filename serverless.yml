@@ -29,6 +29,9 @@ provider:
         - rds:Describe*
         - rds:List*
         - rds:Download*
+        - elb:Describe*
+        - elb:Get*
+        - elasticloadbalancing:Describe*
         - elasticbeanstalk:Check*
         - elasticbeanstalk:Describe*
         - elasticbeanstalk:List*
