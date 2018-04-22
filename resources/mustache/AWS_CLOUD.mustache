@@ -4,21 +4,26 @@
 !includeurl AWSPUML/ApplicationServices/AmazonAPIGateway/AmazonAPIGateway.puml
 !includeurl AWSPUML/General/AWScloud/AWScloud.puml
 !includeurl AWSPUML/Compute/AmazonEC2/instance/instance.puml
+!includeurl AWSPUML/Compute/ElasticLoadBalancing/ApplicationLoadBalancer/ApplicationLoadBalancer.puml
 !includeurl AWSPUML/Database/AmazonRDS/MySQLDBinstance/MySQLDBinstance.puml
-
-' TODO: we need to make this into a mustache template
-' There can be many subnets, which contain many servers and many databases
 
 AWSCLOUD(aws) {
 {{#subnets}}
     frame "{{subnet_name}}" {
-    {{#ec2}}
-        INSTANCE({{id}}, "{{name}}")
-    {{/ec2}}
-    {{#rds}}
-        MYSQLDBINSTANCE({{id}},"{{name}}")
-    {{/rds}}
+        {{#ec2}}
+            INSTANCE("{{id}}", "{{name}}")
+        {{/ec2}}
+        {{#rds}}
+            MYSQLDBINSTANCE("{{id}}","{{name}}")
+        {{/rds}}
+        {{#elb}}
+            APPLICATIONLOADBALANCER("{{id}}","{{name}}")
+        {{/elb}}
     }
+
+{{#connections}}
+    {{src}} -> {{dest}}
+{{/connections}}
 {{/subnets}}
 
 @enduml

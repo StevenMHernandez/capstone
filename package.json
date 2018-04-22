@@ -1,4 +1,8 @@
 {
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/StevenMHernandez/capstone.git"
+  },
   "name": "capstone",
   "version": "1.0.0",
   "description": "",

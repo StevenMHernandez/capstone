@@ -48,7 +48,9 @@ Chatbot logic is "hosted" using AWS Lambda. Deployment and configuration is hand
 
 With sufficient credentials, chatbot can be deployed with `serverless-deploy --aws-profile your-profile-name-here`
 
-More information to come.
+To allow for rendering of the plantuml, we are using plantuml's default PlantUML server system where images are generated on the fly by encoding graphs into the an image url.
+Your own plantuml server can be built deployed onto aws lambda through the use of:
+https://serverlessrepo.aws.amazon.com/applications/arn:aws:serverlessrepo:us-east-1:293246570391:applications~plantuml-render
 
 ## Preview an in-browser graph
 
