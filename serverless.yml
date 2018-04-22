@@ -53,6 +53,7 @@ provider:
     CHATBOT_TOKEN: ${file(./.env.yml):CHATBOT_TOKEN}
     S3_ACCESS_KEY: ${file(./.env.yml):S3_ACCESS_KEY}
     S3_SECRET_KEY: ${file(./.env.yml):S3_SECRET_KEY}
+    PLANTUML_SERVER_URL: ${file(./.env.yml):PLANTUML_SERVER_URL}
     SNS_ZEEBO_QUEUE_TOPIC: ${self:custom.ZeeboQueueTopic}
 
 custom:
