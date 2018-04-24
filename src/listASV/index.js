@@ -2,32 +2,61 @@ function listASV() {
     var AWS = require('aws-sdk');
     AWS.config.update({region: 'us-east-1'});
     var ec2 = new AWS.EC2();
-    var elb = new AWS.ELB();
-    var rds = new AWS.RDS();
     var params = {};
     var ec2Raw = [];
-    var elbRaw = [];
-    var rdsRaw = [];
-    var myec2promise = new Promise(function (resolve, reject) {
-    });
-    var myrdspromise = new Promise(function (resolve, reject) {
-    });
 
     return new Promise(function (resolve, reject) {
         ec2.describeTags(params, function (err, data) {
             ec2Raw = data;
+            var allArr = [];
+            var unique = [];
+            var temp = false;
             // console.log(ec2Raw.Tags);
-            var allASV = "EC2 Servers: ";
+            var allASV = "";
             for (var i = 0; i < ec2Raw.Tags.length; i++) {
-                var ec2var = ec2Raw.Tags[i].Value;
+                var ec2val = ec2Raw.Tags[i].Value;
                 if (ec2Raw.Tags[i].Key == "ASV") {
-                    allASV += ec2var + ", ";
+                    allArr.push(ec2val);
                 }
             }
-            allASV = allASV.substr(0, allASV.length - 2);
 
+            allArr.sort();
+
+            for(var a = 0; a<allArr.length; a++){
+                if(a == allArr.length){
+                    break;
+                }
+                else if(allArr[a] == allArr[a+1]){
+                    continue;
+                }
+                else{
+                    unique.push(allArr[a]);
+                }
+            }
+            //return string
+            allASV = "All Servers: " + unique.toString();
             resolve(allASV);
         });
     });
 }
 module.exports = listASV;
+
+// if (ec2Raw.Tags[i].Key == "ASV") {
+// //     allASV += ec2var + ", ";
+// }
+// uniqueArr.forEach(function(element) {
+//     if (ec2Raw.Tags[i].Key == "ASV") {
+//         if (element != ec2var) {
+//             temp = true;
+//         }
+//         else {
+//             temp = false;
+//         }
+//     }
+//     if (temp) {
+//         uniqueArr.push(ec2var);
+//     }
+// });
+// }
+// allASV = allASV.substr(0, allASV.length - 2);
+// console.log("::ARRAY HERE ->::" + uniqueArr.toString());
