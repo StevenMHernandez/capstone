@@ -61,3 +61,12 @@ This might offer us some additional points of interest for our project such as c
 To run this in-browser graph, we first need to install an http-server with `npm install -g http-server`.
 
 Then we can run the server from our terminal: `http-server` which will then serve `index.html` at `http://localhost:8080`.
+
+## Expanding the Diagram Builder
+
+To expand upon the diagram builder, a new load class for the new server type must be created. Using the aws sdk load all of the data from the desired server. Once data is returned resolve the data array. Add the file to the src/diagrambuilder/index.js
+
+`var loadRDS = require('./loadRDS');
+` 
+
+Finally in the src/diagramBuilder/index.js add the new file in the promise with the proper parameters.

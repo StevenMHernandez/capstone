@@ -11,7 +11,6 @@ function listASV() {
             var allArr = [];
             var unique = [];
             var temp = false;
-            // console.log(ec2Raw.Tags);
             var allASV = "";
             for (var i = 0; i < ec2Raw.Tags.length; i++) {
                 var ec2val = ec2Raw.Tags[i].Value;
@@ -34,29 +33,9 @@ function listASV() {
                 }
             }
             //return string
-            allASV = "All Servers: " + unique.toString();
+            allASV = "All Servers: " + unique.toString() + "\r\n";
             resolve(allASV);
         });
     });
 }
 module.exports = listASV;
-
-// if (ec2Raw.Tags[i].Key == "ASV") {
-// //     allASV += ec2var + ", ";
-// }
-// uniqueArr.forEach(function(element) {
-//     if (ec2Raw.Tags[i].Key == "ASV") {
-//         if (element != ec2var) {
-//             temp = true;
-//         }
-//         else {
-//             temp = false;
-//         }
-//     }
-//     if (temp) {
-//         uniqueArr.push(ec2var);
-//     }
-// });
-// }
-// allASV = allASV.substr(0, allASV.length - 2);
-// console.log("::ARRAY HERE ->::" + uniqueArr.toString());

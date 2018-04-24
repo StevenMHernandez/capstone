@@ -7,7 +7,6 @@
  * @param production
  */
 module.exports.build = function (region, tag, callback) {
-    var loadFromAWS = require('./loadFromAWS');
     var loadEC2 = require('./loadEC2');
     var loadELB = require('./loadELB');
     var loadRDS = require('./loadRDS');
