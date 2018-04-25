@@ -3,7 +3,7 @@
 !includeurl AWSPUML/common.puml
 !includeurl AWSPUML/ApplicationServices/AmazonAPIGateway/AmazonAPIGateway.puml
 !includeurl AWSPUML/General/AWScloud/AWScloud.puml
-!includeurl AWSPUML/Compute/AmazonEC2/instance/instance.puml
+!includeurl AWSPUML/Compute/AmazonEC2/instances/instances.puml
 !includeurl AWSPUML/Database/AmazonRDS/MySQLDBinstance/MySQLDBinstance.puml
 
 ' TODO: we need to make this into a mustache template
@@ -11,9 +11,9 @@
 
 AWSCLOUD(aws) {
     frame "" {
-        INSTANCE(api1, "Windows2016")
-        INSTANCE(api2, "AmazonLinux")
-        INSTANCE(api3, "RedHatService")
+        INSTANCES(api1, "Windows2016")
+        INSTANCES(api2, "AmazonLinux")
+        INSTANCES(api3, "RedHatService")
         MYSQLDBINSTANCE(db1,"MySQL1")
         MYSQLDBINSTANCE(db2,"MySQL1")
     }
@@ -22,7 +22,7 @@ AWSCLOUD(aws) {
         MYSQLDBINSTANCE(db4,"MySQL4")
     }
     frame "" {
-        INSTANCE(api5, "RedHatService")
+        INSTANCES(api5, "RedHatService")
         MYSQLDBINSTANCE(db5,"MySQL5")
     }
 
