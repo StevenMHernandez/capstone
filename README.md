@@ -46,16 +46,19 @@ we should create a page in the wiki so that the whole group can learn.
 
 Chatbot logic is "hosted" using AWS Lambda. Deployment and configuration is handled by [the serverless framework](https://github.com/serverless/serverless)
 
-With sufficient credentials, chatbot can be deployed with `serverless-deploy --aws-profile your-profile-name-here`
+With sufficient credentials, the chatbot can be deployed with `serverless-deploy --aws-profile your-profile-name-here`
 
-More information to come.
+To allow for rendering of the plantuml, we are using plantuml's default PlantUML server system where images are generated on the fly by encoding graphs into the an image url.
+Your own plantuml server can be built deployed onto aws lambda through the use of:
+https://serverlessrepo.aws.amazon.com/applications/arn:aws:serverlessrepo:us-east-1:293246570391:applications~plantuml-render
 
-## Preview an in-browser graph
+Once you have this setup, we should be able to set our environment variables. Copy `.env.example.yml` to `.env.yml` and change variables as necessary.
 
-As an experiment, I am trying out [WebCola](http://marvl.infotech.monash.edu/webcola/index.html) as an interactive graph/uml visualizer.
-WebCola provides some helpers to build SVG graphs in the browser.
-This might offer us some additional points of interest for our project such as clicking an ec2 instance to view stats/more information.
+## Expanding the Diagram Builder
 
-To run this in-browser graph, we first need to install an http-server with `npm install -g http-server`.
+To expand upon the diagram builder, a new load class for the new server type must be created. Using the aws sdk load all of the data from the desired server. Once data is returned resolve the data array. Add the file to the src/diagrambuilder/index.js
 
-Then we can run the server from our terminal: `http-server` which will then serve `index.html` at `http://localhost:8080`.
+`var loadRDS = require('./loadRDS');
+` 
+
+Finally in the src/diagramBuilder/index.js add the new file in the promise with the proper parameters.

@@ -16,9 +16,10 @@ var Mustache = require('mustache');
 let mustacheString = '';
 
 
-    module.exports = function (filename, data) {
-      var file = fs.readFileSync(__dirname + '/../../resources/mustache/AWS_CLOUD.mustache');
-      mustacheString = file.toString();
-      let renderpumlString = Mustache.render(mustacheString, data);
-      fs.writeFileSync(filename, renderpumlString);
+module.exports = function (filename, data) {
+    var file = fs.readFileSync(__dirname + '/../../resources/mustache/AWS_CLOUD.mustache');
+    mustacheString = file.toString();
+    let renderpumlString = Mustache.render(mustacheString, data);
+    fs.writeFileSync(filename, renderpumlString);
+    console.log("Wrote plantuml file to " + filename);
 };
