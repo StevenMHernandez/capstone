@@ -8,14 +8,11 @@
 !includeurl AWSPUML/Database/AmazonRDS/MySQLDBinstance/MySQLDBinstance.puml
 !includeurl AWSPUML/General/user/user.puml
 
-
-USER(user)
-
 AWSCLOUD(aws) {
 {{#subnets}}
     frame "{{subnet_name}}" {
         {{#ec2}}
-            INSTANCE("{{id}}", "{{name}}")
+            INSTANCES("{{id}}", "{{name}}")
         {{/ec2}}
         {{#rds}}
             MYSQLDBINSTANCE("{{id}}","{{name}}")
