@@ -1,0 +1,32 @@
+/*var asv_name = [
+    "Example asset1",
+    "Example asset 2",
+    "Example asset 3"
+];
+
+function list_assets(asv_name){
+    console.log("Here is the list of assets:"+ "\n" + asv_name)
+}
+
+module.export = list_assets();
+*/
+
+var assetList = {
+    asv1: {id: "303", asvtag: "security"},
+    asv2: {id: "209", asvtag: "business"},
+    asv3: {id: "905", asvtag: "personal"},
+    asv4: {id: "1029", asvtag: "security"}
+};
+var asv_name = "security";
+
+function listAssets() {
+    console.log("Here is the list of assets with asv_name: "+ asv_name);
+    Object.keys(assetList).forEach(function (key) {
+        if (assetList[key]['asvtag'] === asv_name) {
+            console.log("Asset: " + key + " contains asv_name: " + assetList[key]['asvtag']);
+            return "Asset: " + key + " contains asv_name: " + assetList[key]['asvtag'];
+
+        }
+    })
+}
+module.export = listAssets();
